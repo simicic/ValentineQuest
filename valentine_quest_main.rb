@@ -11,10 +11,12 @@ class ValentineQuestMain < Gosu::Window
 
     @background_image = Gosu::Image.new("assets/images/gradient.png", :tileable => false)
     @hearts = []
+    @frames = 0
   end
 
   def update
-    @hearts << Heart.new(rand(WINDOW_WIDTH), rand(WINDOW_HEIGHT))
+    @frames += 1
+    @hearts << Heart.new(rand(WINDOW_WIDTH), 0) if @frames % 15 == 0
     @hearts.map(&:update)
   end
 

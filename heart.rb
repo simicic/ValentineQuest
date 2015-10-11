@@ -13,7 +13,7 @@ class Heart
 
   def update
     if x < ValentineQuestMain::WINDOW_WIDTH && y < ValentineQuestMain::WINDOW_HEIGHT
-      @x = x + rand(40) - 10
+      @x = x + rand(20) - 10
       @y = y + rand(30)
     end
   end
