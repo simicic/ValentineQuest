@@ -2,24 +2,25 @@ require 'gosu'
 require_relative 'heart'
 
 class ValentineQuestMain < Gosu::Window
-  WINDOW_HEIGHT = 1024
-  WINDOW_WIDTH = 768
+  WINDOW_WIDTH = 1024
+  WINDOW_HEIGHT = 768
 
   def initialize
-    super WINDOW_HEIGHT, WINDOW_WIDTH
+    super WINDOW_WIDTH, WINDOW_HEIGHT
     self.caption = "Valentine Quest"
 
     @background_image = Gosu::Image.new("assets/images/gradient.png", :tileable => false)
-    @heart = Heart.new(100, 100)
+    @hearts = []
   end
 
   def update
-    @heart.update
+    @hearts << Heart.new(rand(WINDOW_WIDTH), rand(WINDOW_HEIGHT))
+    @hearts.map(&:update)
   end
 
   def draw
     @background_image.draw(0, 0, 0)
-    @heart.draw
+    @hearts.map(&:draw)
   end
 end
 
