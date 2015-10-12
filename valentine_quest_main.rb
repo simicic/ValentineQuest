@@ -27,6 +27,31 @@ class ValentineQuestMain < Gosu::Window
     @hearts.map(&:draw)
     @cursor_image.draw(self.mouse_x, self.mouse_y, 2, 0.2, 0.2)
   end
+
+  def button_down(id)
+    if id == Gosu::MsLeft
+      hit_hearts = @hearts.select{|heart| heart.hit?(self.mouse_x, self.mouse_y)}
+      hearts_hit(hit_hearts)
+    end
+  end
+
+  def hearts_hit(hit_hearts)
+    add_score hit_hearts
+    play_sound hit_hearts
+    remove_hearts hit_hearts
+  end
+
+  def remove_hearts(hearts)
+    @hearts -= hearts
+  end
+
+  def add_score(hearts)
+    # TODO: Implement
+  end
+
+  def play_sound(hearts)
+    # TODO: Implement
+  end
 end
 
 window = ValentineQuestMain.new
