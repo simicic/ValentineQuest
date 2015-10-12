@@ -1,5 +1,6 @@
 require 'gosu'
 require_relative 'heart'
+require_relative 'player'
 
 class ValentineQuestMain < Gosu::Window
   WINDOW_WIDTH = 1024
@@ -11,8 +12,12 @@ class ValentineQuestMain < Gosu::Window
 
     @background_image = Gosu::Image.new("assets/images/gradient.png", tileable: false)
     @cursor_image = Gosu::Image.new("assets/images/cursor.png", tileable: false)
+    @score_text = Gosu::Font.new(20)
+
     @hearts = []
     @frames = 0
+
+    @player = Player.new
   end
 
   def update
@@ -26,6 +31,7 @@ class ValentineQuestMain < Gosu::Window
     @background_image.draw(0, 0, 0)
     @hearts.map(&:draw)
     @cursor_image.draw(self.mouse_x, self.mouse_y, 2, 0.2, 0.2)
+    @score_text.draw("Score: #{@player.score}", 10, 10, 2, 1.0, 1.0, 0xff_ffff00)
   end
 
   def button_down(id)
@@ -46,7 +52,7 @@ class ValentineQuestMain < Gosu::Window
   end
 
   def add_score(hearts)
-    # TODO: Implement
+    @player.add_to_score(hearts.size)
   end
 
   def play_sound(hearts)
