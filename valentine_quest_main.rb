@@ -9,7 +9,8 @@ class ValentineQuestMain < Gosu::Window
     super WINDOW_WIDTH, WINDOW_HEIGHT
     self.caption = "Valentine Quest"
 
-    @background_image = Gosu::Image.new("assets/images/gradient.png", :tileable => false)
+    @background_image = Gosu::Image.new("assets/images/gradient.png", tileable: false)
+    @cursor_image = Gosu::Image.new("assets/images/cursor.png", tileable: false)
     @hearts = []
     @frames = 0
   end
@@ -24,6 +25,7 @@ class ValentineQuestMain < Gosu::Window
   def draw
     @background_image.draw(0, 0, 0)
     @hearts.map(&:draw)
+    @cursor_image.draw(self.mouse_x, self.mouse_y, 2, 0.2, 0.2)
   end
 end
 
