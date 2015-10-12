@@ -18,6 +18,7 @@ class ValentineQuestMain < Gosu::Window
     @frames += 1
     @hearts << Heart.new(rand(WINDOW_WIDTH), 0) if @frames % 15 == 0
     @hearts.map(&:update)
+    @hearts.reject!{|heart| !heart.underscreen?}
   end
 
   def draw

@@ -17,4 +17,8 @@ class Heart
       @y = y + rand(30)
     end
   end
+
+  def underscreen?
+    y < ValentineQuestMain::WINDOW_HEIGHT
+  end
 end
