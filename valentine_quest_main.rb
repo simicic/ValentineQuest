@@ -13,6 +13,7 @@ class ValentineQuestMain < Gosu::Window
     @background_image = Gosu::Image.new("assets/images/gradient.png", tileable: false)
     @cursor_image = Gosu::Image.new("assets/images/cursor.png", tileable: false)
     @hit = Gosu::Sample.new('assets/sounds/boost1.wav')
+    @hit_success = Gosu::Sample.new('assets/sounds/afterburn.wav')
 
     @score_text = Gosu::Font.new(20)
 
@@ -58,7 +59,7 @@ class ValentineQuestMain < Gosu::Window
   end
 
   def play_sound(hearts)
-    @hit.play
+    hearts.empty? ? @hit.play : @hit_success.play
   end
 end
 
