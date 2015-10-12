@@ -15,7 +15,7 @@ class ValentineQuestMain < Gosu::Window
     @hit = Gosu::Sample.new('assets/sounds/boost1.wav')
     @hit_success = Gosu::Sample.new('assets/sounds/afterburn.wav')
 
-    @score_text = Gosu::Font.new(20)
+    @score_text = Gosu::Font.new(64)
 
     @hearts = []
     @frames = 0
@@ -34,7 +34,7 @@ class ValentineQuestMain < Gosu::Window
     @background_image.draw(0, 0, 0)
     @hearts.map(&:draw)
     @cursor_image.draw(self.mouse_x, self.mouse_y, 2, 0.2, 0.2)
-    @score_text.draw("Score: #{@player.score}", 10, 10, 2, 1.0, 1.0, 0xff_ffff00)
+    @score_text.draw("Score: #{@player.score}", 10, 10, 2, 1.0, 1.0, 0xff_000000)
   end
 
   def button_down(id)
