@@ -41,6 +41,8 @@ class ValentineQuestMain < Gosu::Window
     if id == Gosu::MsLeft
       hit_hearts = @hearts.select{|heart| heart.hit?(self.mouse_x, self.mouse_y)}
       hearts_hit(hit_hearts)
+    elsif id == Gosu::KbEscape
+      close
     end
   end
 
