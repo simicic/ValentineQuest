@@ -1,16 +1,17 @@
 class Heart
-  attr_reader :x, :y
+  attr_reader :x, :y, :gender
 
   SPEED_SCALE = 0.3
 
   def initialize(x, y)
-    @image = Gosu::Image.new("assets/images/nested-hearts.png")
     @x = x
     @y = y
     @velocity_x = 0;
     @velocity_y = 10;
     @scale_x = 0.2
     @scale_y = 0.2
+    @gender = ['f', 'm'].sample
+    @image = image_based_on_gender
   end
 
   def draw
@@ -31,5 +32,11 @@ class Heart
   def hit?(position_x, position_y)
     position_x >= x && position_x <= x + @image.width * @scale_x &&
       position_y >= y && position_y <= y + @image.height * @scale_y
+  end
+
+  private
+
+  def image_based_on_gender
+    Gosu::Image.new("assets/images/nested-hearts-#{gender}.png")
   end
 end
