@@ -1,11 +1,14 @@
 class Player
-  attr_reader :score
+  attr_reader :scores
 
   def initialize
-    @score = 0
+    @scores = {:single => 0,
+      :hetero => 0,
+      :homo => 0,
+      :poly => 0}
   end
 
-  def add_to_score(delta)
-    @score += delta
+  def add_to_score(type, delta)
+    @scores[type] += delta
   end
 end

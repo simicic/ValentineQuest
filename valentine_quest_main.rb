@@ -34,7 +34,10 @@ class ValentineQuestMain < Gosu::Window
     @background_image.draw(0, 0, 0)
     @hearts.map(&:draw)
     @cursor_image.draw(self.mouse_x, self.mouse_y, 2, 0.2, 0.2)
-    @score_text.draw("Score: #{@player.score}", 10, 10, 2, 1.0, 1.0, 0xff_000000)
+    @score_text.draw("#{@player.scores[:single]} forever alones", 10, 0*50+10, 2, 1.0, 1.0, 0xff_000000)
+    @score_text.draw("#{@player.scores[:hetero]} hetero couples", 10, 1*50+10, 2, 1.0, 1.0, 0xff_000000)
+    @score_text.draw("#{@player.scores[:homo]} homo couples",     10, 2*50+10, 2, 1.0, 1.0, 0xff_000000)
+    @score_text.draw("#{@player.scores[:poly]} polyamourous",     10, 3*50+10, 2, 1.0, 1.0, 0xff_000000)
   end
 
   def button_down(id)
@@ -57,7 +60,20 @@ class ValentineQuestMain < Gosu::Window
   end
 
   def add_score(hearts)
-    @player.add_to_score(hearts.size)
+    return if hearts.size == 0
+
+    if hearts.size == 1
+      type = :single
+    elsif hearts.size == 2
+      if hearts[0].gender == hearts[1].gender
+        type = :homo
+      else
+        type = :hetero
+      end
+    else
+      type = :poly
+    end
+    @player.add_to_score(type, 1)
   end
 
   def play_sound(hearts)
