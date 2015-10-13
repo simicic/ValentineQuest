@@ -1,6 +1,8 @@
 class Heart
   attr_reader :x, :y
 
+  SPEED_SCALE = 0.3
+
   def initialize(x, y)
     @image = Gosu::Image.new("assets/images/nested-hearts.png")
     @x = x
@@ -17,8 +19,9 @@ class Heart
 
   def update
     @velocity_x = @velocity_x + rand(3) - 1;
-    @x = x + @velocity_x
-    @y = y + @velocity_y
+    @velocity_y = @velocity_y + [1, 1, 1, 1, -1, -3, -2, -2, 2, 3].sample;
+    @x = x + @velocity_x * SPEED_SCALE
+    @y = y + @velocity_y * SPEED_SCALE
   end
 
   def underscreen?
