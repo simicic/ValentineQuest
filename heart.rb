@@ -14,10 +14,8 @@ class Heart
   end
 
   def update
-    if x < ValentineQuestMain::WINDOW_WIDTH && y < ValentineQuestMain::WINDOW_HEIGHT
       @x = x + rand(20) - 10
       @y = y + rand(30)
-    end
   end
 
   def underscreen?
