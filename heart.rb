@@ -5,6 +5,8 @@ class Heart
     @image = Gosu::Image.new("assets/images/nested-hearts.png")
     @x = x
     @y = y
+    @velocity_x = 0;
+    @velocity_y = 10;
     @scale_x = 0.2
     @scale_y = 0.2
   end
@@ -14,8 +16,9 @@ class Heart
   end
 
   def update
-      @x = x + rand(20) - 10
-      @y = y + rand(30)
+    @velocity_x = @velocity_x + rand(3) - 1;
+    @x = x + @velocity_x
+    @y = y + @velocity_y
   end
 
   def underscreen?
